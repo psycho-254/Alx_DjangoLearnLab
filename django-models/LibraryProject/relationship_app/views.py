@@ -3,7 +3,8 @@ from django.views.generic import DetailView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.core.exceptions import PermissionDenied
-from .models import Book, Library
+from .models import Book
+from .models import Library
 from .models import UserProfile
 from .forms import BookForm  
 from django.contrib.auth.decorators import permission_required
