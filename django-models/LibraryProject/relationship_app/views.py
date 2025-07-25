@@ -1,15 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic.detail import DetailView
+from django.views.generic import DetailView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.core.exceptions import PermissionDenied
-from .models import Book
-from .models import Library
+from .models import Book, Library
 from .models import UserProfile
 from .forms import BookForm  
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponseForbidden
+from .models import Library
+from django.views.generic.detail import DetailView
 
 
 # Role check functions
@@ -26,19 +27,19 @@ def check_member(user):
 @login_required
 @user_passes_test(check_admin)
 def admin_view(request):
-    return render(request, 'admin_view.html')
+    return render(request, 'relationship_app/admin_view.html')
 
 # Librarian View
 @login_required
 @user_passes_test(check_librarian)
 def librarian_view(request):
-    return render(request, 'librarian_view.html')
+    return render(request, 'relationship_app/librarian_view.html')
 
 # Member View
 @login_required
 @user_passes_test(check_member)
 def member_view(request):
-    return render(request, 'member_view.html')
+    return render(request, 'relationship_app/member_view.html')
 
 # --- Function-based View: List All Books ---
 def all_books_list_view(request):
